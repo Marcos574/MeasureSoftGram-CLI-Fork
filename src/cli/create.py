@@ -65,6 +65,14 @@ def read_file_characteristics(pre_config_json_file):
 
     return characteristics
 
+def ordenate_characteristics(file_characteristics):
+
+    characteristics = file_characteristics.keys()
+
+    ordenated_characteristics = sorted(characteristics)
+
+    return ordenated_characteristics
+
 
 def read_file_sub_characteristics(pre_config_json_file):
 
@@ -95,6 +103,14 @@ def read_file_sub_characteristics(pre_config_json_file):
 
     return subcharacteristics
 
+def ordenate_subcharacteristics(file_subcharacteristics):
+
+    subcharacteristics = file_subcharacteristics.keys()
+
+    ordenated_subcharacteristics = sorted(subcharacteristics)
+
+    return ordenated_subcharacteristics
+
 
 def read_file_measures(pre_config_json_file):
 
@@ -108,6 +124,11 @@ def read_file_measures(pre_config_json_file):
 
     return measures
 
+def ordenate_measures(measures):
+
+    measures = sorted(measures)
+
+    return measures
 
 def validate_file_characteristics(pre_config_json_file):
 
