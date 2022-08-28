@@ -416,3 +416,75 @@ def test_validate_sum_of_weights():
 
     validate = create.validate_sum_of_weights(sum_weights)
     assert validate is False
+    
+    
+    
+def test_ordenate_measures():
+    measures = [
+        "passed_tests",
+        "test_builds",
+        "test_coverage",
+        "non_complex_file_density",
+        "commented_file_density",
+        "duplication_absense",
+    ]
+
+    measures = create.ordenate_measures(measures)
+
+
+    assert measures == [
+        "commented_file_density",
+        "duplication_absense",
+        "non_complex_file_density",
+        "passed_tests",
+        "test_builds",
+        "test_coverage",
+    ]
+
+def test_ordenate_characteristics():
+
+    file_characteristics = {
+        "reliability": {
+            "weight": 50,
+            "subcharacteristics": ["testing_status"],
+            "weights": {"testing_status": 100.0},
+        },
+        "maintainability": {
+            "weight": 50,
+            "subcharacteristics": ["modifiability"],
+            "weights": {"modifiability": 100.0},
+        },
+    }
+
+    ordenated_characteristics = create.ordenate_characteristics(file_characteristics)
+
+    assert ordenated_characteristics == ["maintainability", "reliability",]
+
+def test_ordenate_subcharacteristics():
+
+    subcharacteristics = {
+        "testing_status": {
+            "weights": {
+                "passed_tests": 33.33,
+                "test_builds": 33.33,
+                "test_coverage": 33.33,
+            },
+            "measures": ["passed_tests", "test_builds", "test_coverage"],
+        },
+        "modifiability": {
+            "weights": {
+                "non_complex_file_density": 50.0,
+                "commented_file_density": 30.0,
+                "duplication_absense": 20.0,
+            },
+            "measures": [
+                "non_complex_file_density",
+                "commented_file_density",
+                "duplication_absense",
+            ],
+        },
+    }
+
+    ordenated_subcharacteristics = create.ordenate_subcharacteristics(subcharacteristics)
+
+    assert ordenated_subcharacteristics == ["modifiability", "testing_status"]
